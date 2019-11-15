@@ -30,15 +30,21 @@ const clueOptionsCache = {}; // TODO: cache
  * @param oppositeClue Opposite clue Number (if exist) from 1 to 6
  */
 function getAllClueOptions(clue, oppositeClue) {
-    if (oppositeClue) {
-        return allPermutations.filter(
-            o =>
-                getVisibleCount(o) === clue &&
-                getVisibleCount(o.slice().reverse()) === oppositeClue,
-        );
-    } else {
-        return allPermutations.filter(o => getVisibleCount(o) === clue);
+    const cacheKey = oppositeClue ? `${clue}-${oppositeClue}` : clue;
+
+    if (clueOptionsCache[cacheKey]) {
+        return clueOptionsCache[cacheKey];
     }
+
+    clueOptionsCache[cacheKey] = oppositeClue
+        ? allPermutations.filter(
+              o =>
+                  getVisibleCount(o) === clue &&
+                  getVisibleCount(o.slice().reverse()) === oppositeClue,
+          )
+        : allPermutations.filter(o => getVisibleCount(o) === clue);
+
+    return clueOptionsCache[cacheKey];
 }
 
 module.exports = getAllClueOptions;
