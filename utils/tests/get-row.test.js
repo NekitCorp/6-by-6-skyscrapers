@@ -1,4 +1,4 @@
-const getRow = require('./get-row');
+const getRow = require('../get-row');
 const { filledMatrix } = require('./test-data');
 
 describe('getRow tests', () => {

@@ -1,4 +1,4 @@
-const getColumn = require('./get-column');
+const getColumn = require('../get-column');
 const { filledMatrix } = require('./test-data');
 
 describe('getColumn tests', () => {

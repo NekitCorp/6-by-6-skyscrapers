@@ -1,4 +1,4 @@
-const getVisibleCount = require('./get-visible-count');
+const getVisibleCount = require('../get-visible-count');
 
 describe('getVisibleCount tests', () => {
     test('check', () => {
