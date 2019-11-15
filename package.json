@@ -1,23 +1,23 @@
 {
-  "name": "6-by-6-skyscrapers",
-  "version": "1.0.0",
-  "description": "https://www.codewars.com/kata/6-by-6-skyscrapers",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NekitCorp/6-by-6-skyscrapers.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/NekitCorp/6-by-6-skyscrapers/issues"
-  },
-  "homepage": "https://github.com/NekitCorp/6-by-6-skyscrapers#readme",
-  "devDependencies": {
-    "jest": "^24.9.0"
-  }
+    "name": "6-by-6-skyscrapers",
+    "version": "1.0.0",
+    "description": "https://www.codewars.com/kata/6-by-6-skyscrapers",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NekitCorp/6-by-6-skyscrapers.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/NekitCorp/6-by-6-skyscrapers/issues"
+    },
+    "homepage": "https://github.com/NekitCorp/6-by-6-skyscrapers#readme",
+    "devDependencies": {
+        "jest": "^24.9.0"
+    }
 }
