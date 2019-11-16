@@ -1,4 +1,7 @@
-const getAllClueOptions = require('../get-all-clue-options');
+const {
+    getAllClueOptions,
+    getAllCluesOptions,
+} = require('../get-all-clue-options');
 
 describe('getAllClueOptions simple tests', () => {
     test('check length', () => {
@@ -129,5 +132,34 @@ describe('getAllClueOptions complex tests with opposite clue', () => {
         expect(
             options.find(o => o.toString() === [3, 4, 2, 5, 1, 6].toString()),
         ).toBeDefined();
+    });
+});
+
+describe('getAllCluesOptions tests', () => {
+    test('check', () => {
+        // prettier-ignore
+        const clues = [ 0, 0, 0, 2, 2, 0,
+                        0, 0, 0, 6, 3, 0,
+                        0, 4, 0, 0, 0, 0,
+                        4, 4, 0, 3, 0, 0];
+
+        const cluesOptions = getAllCluesOptions(clues);
+
+        // check 0 clue
+        clues.forEach((clue, i) => {
+            if (clue === 0) {
+                expect(cluesOptions[i].length).toBe(0);
+            }
+        });
+
+        // check others
+        expect(cluesOptions[3].length).toBe(274); // 2
+        expect(cluesOptions[4].length).toBe(40); // 2 - 4
+        expect(cluesOptions[9].length).toBe(1); // 6
+        expect(cluesOptions[10].length).toBe(10); // 3 - 4
+        expect(cluesOptions[13].length).toBe(0); // opposite 4
+        expect(cluesOptions[18].length).toBe(85); // 4
+        expect(cluesOptions[19].length).toBe(0); // opposite 4
+        expect(cluesOptions[21].length).toBe(225); // 3
     });
 });

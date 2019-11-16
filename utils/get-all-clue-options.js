@@ -22,7 +22,7 @@ function perm(xs) {
 }
 
 const allPermutations = perm([1, 2, 3, 4, 5, 6]);
-const clueOptionsCache = {}; // TODO: cache
+const clueOptionsCache = {};
 
 /**
  * Get all options by clue numbers
@@ -47,8 +47,6 @@ function getAllClueOptions(clue, oppositeClue) {
     return clueOptionsCache[cacheKey];
 }
 
-module.exports = getAllClueOptions;
-
 // for (let i = 1; i < 7; i++) {
 //     console.log(i, getAllClueOptions(i));
 // }
@@ -58,3 +56,49 @@ module.exports = getAllClueOptions;
 //         console.log(i, j, getAllClueOptions(i, j));
 //     }
 // }
+
+const oppositeClueIndex = {
+    0: 17,
+    1: 16,
+    2: 15,
+    3: 14,
+    4: 13,
+    5: 12,
+    6: 23,
+    7: 22,
+    8: 21,
+    9: 20,
+    10: 19,
+    11: 18,
+};
+
+/**
+ * Get all clues options.
+ * If clue has opposite clue, opposite clue deleted and
+ * the current one decreases the number of options.
+ * @param clues Clues, array 1x24
+ */
+function getAllCluesOptions(clues) {
+    const cluesCopy = clues.slice();
+
+    for (let i = 0; i < 24; i++) {
+        if (cluesCopy[i] === 0) {
+            cluesCopy[i] = [];
+            continue;
+        }
+
+        if (oppositeClueIndex[i] && cluesCopy[oppositeClueIndex[i]]) {
+            cluesCopy[i] = getAllClueOptions(
+                cluesCopy[i],
+                cluesCopy[oppositeClueIndex[i]],
+            );
+            cluesCopy[oppositeClueIndex[i]] = 0;
+        } else {
+            cluesCopy[i] = getAllClueOptions(cluesCopy[i]);
+        }
+    }
+
+    return cluesCopy;
+}
+
+module.exports = { getAllClueOptions, getAllCluesOptions };
