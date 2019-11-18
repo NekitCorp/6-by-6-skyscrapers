@@ -113,7 +113,7 @@ function getClueSide(clueIndex) {
         return 'bottom';
     }
 
-    if (clueIndex >= 18 && clueIndex < 23) {
+    if (clueIndex >= 18 && clueIndex < 24) {
         return 'left';
     }
 }
