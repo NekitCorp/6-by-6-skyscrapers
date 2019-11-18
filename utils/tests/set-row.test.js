@@ -64,7 +64,7 @@ describe('canSetRow tests', () => {
         const matrix = [
             [2, 1, 4, 3, 5, 6],
             [1, 1, 1, 1, 1, 1],
-            [null, null, null, null, null, null],
+            [0, 0, 0, 0, 0, 0],
             [6, 5, 2, 1, 3, 4],
             [5, 4, 1, 6, 2, 3],
             [3, 2, 5, 4, 6, 1],
@@ -75,7 +75,7 @@ describe('canSetRow tests', () => {
 
     test('check #3', () => {
         const matrix = [
-            [null, 5, null, null, null, 4],
+            [0, 5, 0, 0, 0, 4],
             [2, 1, 4, 3, 5, 6],
             [1, 1, 1, 1, 1, 1],
             [6, 5, 2, 1, 3, 4],
@@ -92,7 +92,7 @@ describe('canSetRow tests', () => {
             [1, 1, 1, 1, 1, 1],
             [6, 5, 2, 1, 3, 4],
             [5, 4, 1, 6, 2, 3],
-            [null, null, null, null, null, 4],
+            [0, 0, 0, 0, 0, 4],
             [3, 2, 5, 4, 6, 1],
         ];
 
@@ -106,7 +106,7 @@ describe('canSetRow tests', () => {
             [6, 5, 2, 1, 3, 4],
             [5, 4, 1, 6, 2, 3],
             [3, 2, 5, 4, 6, 1],
-            [null, null, null, null, null, 5],
+            [0, 0, 0, 0, 0, 5],
         ];
 
         expect(canSetRow(matrix, 6, [6, 5, 2, 1, 3, 4])).toBeFalsy();
@@ -118,7 +118,7 @@ describe('canSetRow tests', () => {
             [1, 1, 1, 1, 1, 1],
             [4, 3, 6, 5, 1, 2],
             [6, 5, 2, 1, 3, 4],
-            [5, 4, 1, null, 2, 3],
+            [5, 4, 1, 0, 2, 3],
             [3, 2, 5, 4, 6, 1],
         ];
 

@@ -62,12 +62,12 @@ describe('canSetColumn tests', () => {
 
     test('check #2', () => {
         const matrix = [
-            [2, 1, null, 3, 5, 6],
-            [1, 1, null, 1, 1, 1],
-            [null, null, null, null, null, null],
-            [6, 5, null, 1, 3, 4],
-            [5, 4, null, 6, 2, 3],
-            [3, 2, null, 4, 6, 1],
+            [2, 1, 0, 3, 5, 6],
+            [1, 1, 0, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0],
+            [6, 5, 0, 1, 3, 4],
+            [5, 4, 0, 6, 2, 3],
+            [3, 2, 0, 4, 6, 1],
         ];
 
         expect(canSetColumn(matrix, 3, [6, 5, 2, 1, 3, 4])).toBeTruthy();
@@ -75,11 +75,11 @@ describe('canSetColumn tests', () => {
 
     test('check #3', () => {
         const matrix = [
-            [null, 5, null, null, null, 4],
+            [0, 5, 0, 0, 0, 4],
             [5, 1, 4, 3, 5, 6],
-            [null, 1, 1, 1, 1, 1],
-            [null, 5, 2, 1, 3, 4],
-            [null, 4, 1, 6, 2, 3],
+            [0, 1, 1, 1, 1, 1],
+            [0, 5, 2, 1, 3, 4],
+            [0, 4, 1, 6, 2, 3],
             [4, 2, 5, 4, 6, 1],
         ];
 
@@ -88,11 +88,11 @@ describe('canSetColumn tests', () => {
 
     test('check #4', () => {
         const matrix = [
-            [2, 1, 4, 3, null, 6],
-            [1, 1, 1, 1, null, 1],
-            [6, 5, 2, 1, null, 4],
-            [5, 4, 1, 6, null, 3],
-            [null, null, null, null, null, 4],
+            [2, 1, 4, 3, 0, 6],
+            [1, 1, 1, 1, 0, 1],
+            [6, 5, 2, 1, 0, 4],
+            [5, 4, 1, 6, 0, 3],
+            [0, 0, 0, 0, 0, 4],
             [3, 2, 5, 4, 4, 1],
         ];
 
@@ -101,12 +101,12 @@ describe('canSetColumn tests', () => {
 
     test('check #5', () => {
         const matrix = [
-            [2, 1, 4, 3, 5, null],
-            [1, 1, 1, 1, 1, null],
-            [6, 5, 2, 1, 3, null],
-            [5, 4, 1, 6, 2, null],
-            [3, 2, 5, 4, 6, null],
-            [null, null, null, null, null, 5],
+            [2, 1, 4, 3, 5, 0],
+            [1, 1, 1, 1, 1, 0],
+            [6, 5, 2, 1, 3, 0],
+            [5, 4, 1, 6, 2, 0],
+            [3, 2, 5, 4, 6, 0],
+            [0, 0, 0, 0, 0, 5],
         ];
 
         expect(canSetColumn(matrix, 6, [6, 5, 2, 1, 3, 4])).toBeFalsy();
@@ -117,8 +117,8 @@ describe('canSetColumn tests', () => {
             [2, 1, 4, 3, 5, 6],
             [1, 1, 1, 1, 4, 1],
             [4, 3, 6, 5, 1, 2],
-            [6, 5, 2, 1, null, 4],
-            [5, 4, 1, null, 2, 3],
+            [6, 5, 2, 1, 0, 4],
+            [5, 4, 1, 0, 2, 3],
             [3, 2, 5, 4, 3, 1],
         ];
 

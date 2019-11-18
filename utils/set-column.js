@@ -22,7 +22,7 @@ function canSetColumn(array, number, column) {
     const currentColumn = getColumn(array, number);
 
     for (let i = 0; i < 6; i++) {
-        if (currentColumn[i] !== null && currentColumn[i] !== column[i]) {
+        if (currentColumn[i] !== 0 && currentColumn[i] !== column[i]) {
             return false;
         }
     }

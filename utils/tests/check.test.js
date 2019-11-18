@@ -31,12 +31,12 @@ describe('check without nulls tests', () => {
 describe('check with nulls tests', () => {
     test('true', () => {
         const matrix = [
-            [null, null, null, null, null, 6],
+            [0, 0, 0, 0, 0, 6],
             [1, 6, 3, 2, 4, 5],
             [4, 3, 6, 5, 1, 2],
-            [null, null, 2, null, null, null],
+            [0, 0, 2, 0, 0, 0],
             [5, 4, 1, 6, 2, 3],
-            [3, 2, null, 4, 6, 1],
+            [3, 2, 0, 4, 6, 1],
         ];
 
         expect(check(matrix)).toBeTruthy();
@@ -44,12 +44,12 @@ describe('check with nulls tests', () => {
 
     test('false', () => {
         const matrix = [
-            [null, null, null, null, null, 5],
+            [0, 0, 0, 0, 0, 5],
             [1, 6, 3, 2, 4, 5],
             [4, 3, 6, 5, 1, 2],
-            [null, null, 1, null, null, null],
+            [0, 0, 1, 0, 0, 0],
             [5, 4, 1, 6, 2, 3],
-            [3, 2, null, 4, 6, 1],
+            [3, 2, 0, 4, 6, 1],
         ];
 
         expect(check(matrix)).toBeFalsy();

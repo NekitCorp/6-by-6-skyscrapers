@@ -6,7 +6,7 @@ const getColumn = require('./get-column');
  * @param array Array 1x6
  */
 function hasDuplicate(array) {
-    const arrayWithoutNulls = array.filter(el => el !== null);
+    const arrayWithoutNulls = array.filter(el => el !== 0);
 
     return new Set(arrayWithoutNulls).size !== arrayWithoutNulls.length;
 }

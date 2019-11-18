@@ -20,7 +20,7 @@ function canSetRow(array, number, row) {
     const currentRow = getRow(array, number);
 
     for (let i = 0; i < 6; i++) {
-        if (currentRow[i] !== null && currentRow[i] !== row[i]) {
+        if (currentRow[i] !== 0 && currentRow[i] !== row[i]) {
             return false;
         }
     }
