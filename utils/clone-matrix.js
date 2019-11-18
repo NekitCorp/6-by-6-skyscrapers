@@ -1,12 +1,13 @@
+// @ts-check
 /**
  * Clone matrix
- * @param array Matrix 6x6
+ * @param {number[][]} matrix Matrix 6x6
  */
-function cloneMatrix(array) {
+function cloneMatrix(matrix) {
     const newMatrix = [];
 
     for (let i = 0; i < 6; i++) {
-        newMatrix[i] = array[i].slice();
+        newMatrix[i] = matrix[i].slice();
     }
 
     return newMatrix;

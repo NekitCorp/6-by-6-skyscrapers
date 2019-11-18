@@ -1,8 +1,12 @@
+// @ts-check
 const getVisibleCount = require('./get-visible-count');
 
 /**
  * Generate all permutations
  * https://stackoverflow.com/questions/37579994/generate-permutations-of-javascript-array
+ * @param {number[]} xs Options
+ *
+ * @returns {number[][]}
  */
 function perm(xs) {
     let ret = [];
@@ -18,6 +22,7 @@ function perm(xs) {
             }
         }
     }
+
     return ret;
 }
 
@@ -26,8 +31,10 @@ const clueOptionsCache = {};
 
 /**
  * Get all options by clue numbers
- * @param clue Clue number from 1 to 6
- * @param oppositeClue Opposite clue Number (if exist) from 1 to 6
+ * @param {number} clue Clue number from 1 to 6
+ * @param {number=} oppositeClue Opposite clue Number (if exist) from 1 to 6
+ *
+ * @returns {number[][]}
  */
 function getAllClueOptions(clue, oppositeClue) {
     const cacheKey = oppositeClue ? `${clue}-${oppositeClue}` : clue;
@@ -76,7 +83,9 @@ const oppositeClueIndex = {
  * Get all clues options.
  * If clue has opposite clue, opposite clue deleted and
  * the current one decreases the number of options.
- * @param clues Clues, array 1x24
+ * @param {any[]} clues Clues, array 1x24
+ *
+ * @returns {number[][][]}
  */
 function getAllCluesOptions(clues) {
     const cluesCopy = clues.slice();

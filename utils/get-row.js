@@ -1,10 +1,11 @@
+// @ts-check
 /**
  * Get row by number
- * @param array Matrix 6x6
- * @param number Number from 1 to 6
+ * @param {number[][]} matrix Matrix 6x6
+ * @param {number} number Number from 1 to 6
  */
-function getRow(array, number) {
-    return array[number - 1];
+function getRow(matrix, number) {
+    return matrix[number - 1];
 }
 
 module.exports = getRow;

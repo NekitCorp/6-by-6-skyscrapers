@@ -1,9 +1,10 @@
+// @ts-check
 const getRow = require('./get-row');
 const getColumn = require('./get-column');
 
 /**
  * Check duplicate array values
- * @param array Array 1x6
+ * @param {number[]} array Array 1x6
  */
 function hasDuplicate(array) {
     const arrayWithoutNulls = array.filter(el => el !== 0);
@@ -14,13 +15,13 @@ function hasDuplicate(array) {
 /**
  * Check matrix by rule:
  * "No two skyscrapers in a row or column may have the same number of floors"
- * @param array Matrix 6x6
+ * @param {number[][]} matrix Matrix 6x6
  */
-function check(array) {
+function check(matrix) {
     for (let i = 1; i < 7; i++) {
         if (
-            hasDuplicate(getRow(array, i)) ||
-            hasDuplicate(getColumn(array, i))
+            hasDuplicate(getRow(matrix, i)) ||
+            hasDuplicate(getColumn(matrix, i))
         ) {
             return false;
         }

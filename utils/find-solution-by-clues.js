@@ -1,3 +1,4 @@
+// @ts-check
 const { getAllCluesOptions } = require('./get-all-clue-options');
 const { canSetRow, setRow } = require('./set-row');
 const { setColumn, canSetColumn } = require('./set-column');
@@ -7,7 +8,9 @@ const check = require('./check');
 
 /**
  * Find solution, sorting through all the clue options
- * @param clues Clues, array 1x24
+ * @param {number[]} clues Clues, array 1x24
+ *
+ * @returns {number[][]}
  */
 function findSolutionByClues(clues) {
     const cluesOptions = getAllCluesOptions(clues);
@@ -28,6 +31,11 @@ const mapClueToNumber = {
     23: 1, 22: 2, 21: 3, 20: 4, 19: 5, 18: 6,
 };
 
+/**
+ * Recursion to find a solution
+ * @param {number[][]} matrix
+ * @param {number[][][]} cluesOptions
+ */
 function recursion(matrix, cluesOptions) {
     for (let i = 0; i < cluesOptions.length; i++) {
         const clueOption = cluesOptions[i];
@@ -90,7 +98,7 @@ function recursion(matrix, cluesOptions) {
 
 /**
  * Get clue side by clue index
- * @param clueIndex Clue index
+ * @param {number} clueIndex Clue index
  */
 function getClueSide(clueIndex) {
     if (clueIndex >= 0 && clueIndex < 6) {

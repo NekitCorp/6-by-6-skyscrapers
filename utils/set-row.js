@@ -1,23 +1,24 @@
+// @ts-check
 const getRow = require('./get-row');
 
 /**
  * Set row
- * @param array Matrix 6x6
- * @param number Row number from 1 to 6
- * @param row New row
+ * @param {number[][]} matrix Matrix 6x6
+ * @param {number} number Row number from 1 to 6
+ * @param {number[]} row New row
  */
-function setRow(array, number, row) {
-    array[number - 1] = row;
+function setRow(matrix, number, row) {
+    matrix[number - 1] = row;
 }
 
 /**
  * Check if a row can get up without intersections
- * @param array Matrix 6x6
- * @param number Row number from 1 to 6
- * @param row New row
+ * @param {number[][]} matrix Matrix 6x6
+ * @param {number} number Row number from 1 to 6
+ * @param {number[]} row New row
  */
-function canSetRow(array, number, row) {
-    const currentRow = getRow(array, number);
+function canSetRow(matrix, number, row) {
+    const currentRow = getRow(matrix, number);
 
     for (let i = 0; i < 6; i++) {
         if (currentRow[i] !== 0 && currentRow[i] !== row[i]) {
