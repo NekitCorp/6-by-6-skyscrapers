@@ -224,8 +224,11 @@ function check(matrix) {
  * @returns {number[][]}
  */
 function findSolutionByClues(clues) {
-    const cluesOptions = getAllCluesOptions(clues);
+    const cluesOptionsArray = getAllCluesOptions(clues);
     const matrix = new Array(6).fill(0).map(_ => new Array(6).fill(0));
+    const cluesOptions = cluesOptionsArray
+        .map((options, i) => ({ options, i }))
+        .sort((a, b) => a.options.length - b.options.length);
 
     if (recursion(matrix, cluesOptions)) {
         return matrix;
@@ -245,22 +248,25 @@ const mapClueToNumber = {
 /**
  * Recursion to find a solution
  * @param {number[][]} matrix
- * @param {number[][][]} cluesOptions
+ * @param {{ i: number, options: number[][] }[]} cluesOptions
  */
 function recursion(matrix, cluesOptions) {
     for (let i = 0; i < cluesOptions.length; i++) {
         const clueOption = cluesOptions[i];
 
-        if (clueOption.length === 0) {
+        if (clueOption.options.length === 0) {
             continue;
         }
 
-        const clueSide = getClueSide(i);
-        const copyCluesOptions = cluesOptions.slice();
-        copyCluesOptions[i] = [];
+        const clueSide = getClueSide(clueOption.i);
+        const copyCluesOptions = cluesOptions.map(_ => ({
+            i: _.i,
+            options: _.options.slice(),
+        }));
+        copyCluesOptions[i].options = [];
 
-        for (let j = 0; j < clueOption.length; j++) {
-            let option = clueOption[j];
+        for (let j = 0; j < clueOption.options.length; j++) {
+            let option = clueOption.options[j];
             let back;
 
             if (clueSide === 'bottom' || clueSide === 'right') {
@@ -268,28 +274,44 @@ function recursion(matrix, cluesOptions) {
             }
 
             if (clueSide === 'left' || clueSide === 'right') {
-                if (canSetRow(matrix, mapClueToNumber[i], option)) {
-                    const prevRow = getRow(matrix, mapClueToNumber[i]);
-                    back = () => setRow(matrix, mapClueToNumber[i], prevRow);
-                    setRow(matrix, mapClueToNumber[i], option);
+                if (canSetRow(matrix, mapClueToNumber[clueOption.i], option)) {
+                    const prevRow = getRow(
+                        matrix,
+                        mapClueToNumber[clueOption.i],
+                    );
+                    back = () =>
+                        setRow(matrix, mapClueToNumber[clueOption.i], prevRow);
+                    setRow(matrix, mapClueToNumber[clueOption.i], option);
                 } else {
                     continue;
                 }
             }
 
             if (clueSide === 'bottom' || clueSide === 'top') {
-                if (canSetColumn(matrix, mapClueToNumber[i], option)) {
-                    const prevColumn = getColumn(matrix, mapClueToNumber[i]);
+                if (
+                    canSetColumn(matrix, mapClueToNumber[clueOption.i], option)
+                ) {
+                    const prevColumn = getColumn(
+                        matrix,
+                        mapClueToNumber[clueOption.i],
+                    );
                     back = () =>
-                        setColumn(matrix, mapClueToNumber[i], prevColumn);
-                    setColumn(matrix, mapClueToNumber[i], option);
+                        setColumn(
+                            matrix,
+                            mapClueToNumber[clueOption.i],
+                            prevColumn,
+                        );
+                    setColumn(matrix, mapClueToNumber[clueOption.i], option);
                 } else {
                     continue;
                 }
             }
 
             if (check(matrix)) {
-                if (copyCluesOptions.filter(op => op.length > 0).length === 0) {
+                if (
+                    copyCluesOptions.filter(op => op.options.length > 0)
+                        .length === 0
+                ) {
                     return true;
                 }
 
@@ -324,7 +346,7 @@ function getClueSide(clueIndex) {
         return 'bottom';
     }
 
-    if (clueIndex >= 18 && clueIndex < 23) {
+    if (clueIndex >= 18 && clueIndex < 24) {
         return 'left';
     }
 }
@@ -382,6 +404,7 @@ function fillEmptyCells(matrix) {
  */
 function solvePuzzle(clues) {
     const matrix = findSolutionByClues(clues);
+
     fillEmptyCells(matrix);
 
     return matrix;
