@@ -5,10 +5,9 @@ const getVisibleCount = require('./get-visible-count');
  * Generate all permutations
  * https://stackoverflow.com/questions/37579994/generate-permutations-of-javascript-array
  * @param {number[]} xs Options
- *
- * @returns {number[][]}
  */
 function perm(xs) {
+    /** @type {number[][]} */
     let ret = [];
 
     for (let i = 0; i < xs.length; i = i + 1) {
@@ -83,27 +82,28 @@ const oppositeClueIndex = {
  * Get all clues options.
  * If clue has opposite clue, opposite clue deleted and
  * the current one decreases the number of options.
- * @param {any[]} clues Clues, array 1x24
+ * @param {number[]} clues Clues, array 1x24
  *
  * @returns {number[][][]}
  */
 function getAllCluesOptions(clues) {
-    const cluesCopy = clues.slice();
+    /** @type {number[][][]} */
+    const cluesCopy = [];
 
     for (let i = 0; i < 24; i++) {
-        if (cluesCopy[i] === 0) {
+        if (clues[i] === 0) {
             cluesCopy[i] = [];
             continue;
         }
 
-        if (oppositeClueIndex[i] && cluesCopy[oppositeClueIndex[i]]) {
+        if (oppositeClueIndex[i] && clues[oppositeClueIndex[i]]) {
             cluesCopy[i] = getAllClueOptions(
-                cluesCopy[i],
-                cluesCopy[oppositeClueIndex[i]],
+                clues[i],
+                clues[oppositeClueIndex[i]],
             );
-            cluesCopy[oppositeClueIndex[i]] = 0;
+            clues[oppositeClueIndex[i]] = 0;
         } else {
-            cluesCopy[i] = getAllClueOptions(cluesCopy[i]);
+            cluesCopy[i] = getAllClueOptions(clues[i]);
         }
     }
 
